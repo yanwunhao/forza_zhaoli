@@ -12,7 +12,7 @@ interests = ['A', 'B', 'C', 'D', 'E', 'F']
 
 users = []
 
-for user_id in range(476):
+for user_id in range(5230):
     user_type = random.randint(1, 4)
     if user_type == 1:
         # generate user age
@@ -186,3 +186,17 @@ with open('./new_dataset_zhaoli.csv', 'w') as f:
         csvWriter.writerow(user)
     f.close()
 
+samples = []
+for user in users:
+    userid = user[0]
+    userscore = user[-1]
+    for i in range(len(userscore)):
+        if userscore[i] is None:
+            continue
+        else:
+            samples.append([userid, i, userscore[i]])
+
+with open('./new_dataset', 'w') as f:
+    for sample in samples:
+        f.write(str(sample[0]) + " " + str(sample[1]) + " " + str(sample[2]) + "\n")
+    f.close()
