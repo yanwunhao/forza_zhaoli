@@ -1,4 +1,4 @@
-from surprise import SVDpp, NMF
+from surprise import SVDpp, NMF, SlopeOne
 from surprise import Dataset
 from surprise import Reader
 from surprise.model_selection import cross_validate
@@ -24,3 +24,13 @@ reader = Reader(line_format='user item rating', sep=' ')
 data = Dataset.load_from_file(file_path, reader=reader)
 
 cross_validate(NMF(), data, verbose=True)
+
+print("Slope One on Hokkaido Dataset")
+
+file_path = os.path.expanduser('new_dataset')
+
+reader = Reader(line_format='user item rating', sep=' ')
+
+data = Dataset.load_from_file(file_path, reader=reader)
+
+cross_validate(SlopeOne(), data, verbose=True)
